@@ -10,6 +10,9 @@ public struct IAMDashboard: View {
     var pageType: PageType
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
+    init(pageType: PageType) {
+        self.pageType = pageType
+    }
     
     public var body: some View {
         VStack {
