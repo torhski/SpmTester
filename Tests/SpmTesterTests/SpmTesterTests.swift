@@ -1,6 +1,12 @@
 import XCTest
 @testable import SpmTester
 
+let appId = "testAppId"
+let token = "testToken"
+let refreshToken = "testRefreshToken"
+let apiKey = "testApikey"
+let config = CoreConfiguration(appId: appId, apiKey: apiKey, token: token, refreshToken: refreshToken, platform: Platform.ANDROID)
+
 final class SpmTesterTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
@@ -13,13 +19,9 @@ final class SpmTesterTests: XCTestCase {
         print("test done")
     }
     
-    func testCustomClassExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-        
-        print("test custom class start")
-        
-        print(Delegator().log())
+    
+    func testCore() throws {
+        Core.initialize(config: config)
+        XCTAssertEqual(Core.appId(), appId)
     }
 }
