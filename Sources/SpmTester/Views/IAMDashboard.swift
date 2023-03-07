@@ -10,7 +10,7 @@ public struct IAMDashboard: View {
     var pageType: PageType
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    init(pageType: PageType) {
+    public init(pageType: PageType) {
         self.pageType = pageType
     }
     
