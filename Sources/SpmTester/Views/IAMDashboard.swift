@@ -2,7 +2,7 @@
 import SwiftUI
 
 public enum PageType {
-    case ACTIVITY, ACHIEVMENTS, RANKING, SETTING
+    case feed, achievements, ranking, setting
 }
 
 
@@ -42,6 +42,6 @@ public struct IAMDashboard: View {
 
 struct IAMDashboard_Previews: PreviewProvider {
     static var previews: some View {
-        IAMDashboard(PageType.RANKING)
+        IAMDashboard(.ranking)
     }
 }

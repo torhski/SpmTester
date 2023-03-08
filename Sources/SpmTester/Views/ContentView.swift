@@ -7,11 +7,11 @@ struct ContentView: View {
     
     public var body: some View {
         
-        if pageType == PageType.ACHIEVMENTS {
+        if pageType == .achievements {
             AchievementContent()
-        } else if pageType == PageType.RANKING {
+        } else if pageType == .ranking {
             RankingContent()
-        } else if pageType == PageType.SETTING {
+        } else if pageType == .setting {
             SettingContent()
         } else {
             ActivityContent()

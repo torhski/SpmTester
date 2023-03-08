@@ -10,23 +10,20 @@ class InstallationRemote {
     
     
     func createRequest(_ appId: String, auid: String? = nil, idProvider: String? = nil) {
-    
-        AF.request("https://httpbin.org/get").response { response in
-            debugPrint(response)
+        print("createRequest")
+        
+        
+
+        
+        AF.request("https://httpbin.org/get").responseJSON {
+            response in
+            print("request: \(String(describing: response.request))")
+            
+            print("response: \(String(describing: response.response))")
+            
+            print("result: \(String(describing: response.result))")
         }
     }
     
     
-}
-
-class APIManager: NSObject {
-    internal static func getAPIHeader() -> HTTPHeaders {
-        var header = HTTPHeaders()
-        header.add(name: kIAMInstallationBundleId, value: String(describing: Bundle.main.bundleIdentifier))
-        
-        
-        
-        
-        return header
-    }
 }
