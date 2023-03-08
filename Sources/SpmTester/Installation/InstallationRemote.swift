@@ -1,7 +1,6 @@
 import Foundation
 import Alamofire
 
-let ENDPOINT = ""
 let kIAMInstallationBundleId = "X-Ios-Bundle-Identifier"
 let kIAMPublisherAppId = "X-Iam-App-Id"
 let kIAMPublisherApiKey = "X-Iam-Api-Key"
@@ -9,21 +8,19 @@ let kIAMPublisherApiKey = "X-Iam-Api-Key"
 class InstallationRemote {
     
     
-    func createRequest(_ appId: String, auid: String? = nil, idProvider: String? = nil) {
-        print("createRequest")
+    func createRequest(_ appId: String, auid: String? = nil, idProvider: String? = nil) async throws -> String {
         
-        
-
-        
-        AF.request("https://httpbin.org/get").responseJSON {
-            response in
-            print("request: \(String(describing: response.request))")
-            
-            print("response: \(String(describing: response.response))")
-            
-            print("result: \(String(describing: response.result))")
-        }
+        let resp = try await APIManager.shared.requestJSON(.Register, type: AuidRegisterResponse.self, method: .post, parameters: [
+            "appId": appId
+        ])
+        return String(describing: resp.result)
     }
     
+    func connectHub(_ appId: String, _auid: String, account: String) async {
+        
+    }
     
+    func disconnectHub(_ appId: String, _auid: String, account: String) async {
+        
+    }
 }

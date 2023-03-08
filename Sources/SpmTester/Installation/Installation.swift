@@ -1,26 +1,47 @@
 
 import Foundation
 
+var kIAMAuidPrefix = "KEY_IAM_Auid_"
+
 public class Installation {
     
-    // @TODO
-    // 1. generate auid
-    // 2. refresh token (optional)
-    // 3. 
+    var auid: String?
+    private var _store = InstallationStore()
     
-    var auid: String?   // TODO sync from server
+    func loadAuid(_ appId: String, auid: String? = nil, idProvider: String? = nil) async throws {
     
-    func generateAuid() {
-        // TODO
+        if auid != nil {
+            return
+        }
+        
+        if let cached = _store.read(key: self._auidKey(appId)).value {
+            self.auid = String(describing: cached)
+        }
+        
+        if self.auid == nil {
+            try await self._generateAuid(appId)
+        }
     }
     
-    // return response
-    private func registerAuid(appId: String, auid: String? = nil, idProvider: String? = nil) -> Void {
+    func refreshAuid(_ appId: String) async throws {
+        
+        self.auid = nil
+        _store.delete(key: self._auidKey(appId))
+        
+        try await self.loadAuid(appId)
+    }
+    
+    private func _generateAuid(_ appId: String) async throws {
+        
+        do {
+            self.auid = try await InstallationRemote().createRequest(appId, auid: self.auid)
+        } catch {
+            debugPrint("_generateAuid error")
+        }
         
     }
     
-    func refreshToken() {
-        
+    private func _auidKey(_ appId: String) -> String {
+        return kIAMAuidPrefix + appId
     }
-    
 }

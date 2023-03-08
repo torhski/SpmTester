@@ -120,12 +120,10 @@ public class InstallationStore {
                     kSecAttrSynchronizable: synchronizable
                 ]
                 
-                print("keychainQuery \(keychainQuery)")
                 return SecItemUpdate(keychainQuery as CFDictionary, update as CFDictionary)
             } else {
                 keychainQuery[kSecValueData] = value.data(using: String.Encoding.utf8)
                 keychainQuery[kSecAttrAccessible] = attrAccessible
-                print("keychainQuery \(keychainQuery)")
                 return SecItemAdd(keychainQuery as CFDictionary, nil)
             }
         }
