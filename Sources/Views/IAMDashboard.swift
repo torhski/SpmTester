@@ -5,19 +5,27 @@ public enum PageType {
     case ACTIVITY, ACHIEVMENTS, RANKING, SETTING
 }
 
+
 public struct IAMDashboard: View {
     
     var pageType: PageType
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    public init(pageType: PageType) {
+    public init(_ pageType: PageType) {
         self.pageType = pageType
     }
     
     public var body: some View {
         VStack {
             ContentView(pageType: pageType)
-        }.navigationBarBackButtonHidden(true)
+        }
+        #if os(iOS)
+            .navigationBarBackButtonHidden(true)
+        #else
+            .navigationBarBackButtonHidden(false)
+        #endif
+        
+        #if os(iOS)
             .navigationBarItems(leading: Button(action: {
                 print("click drawer")
             }, label: {
@@ -28,11 +36,12 @@ public struct IAMDashboard: View {
             }, label: {
                 Text("Close")
             }))
+        #endif
     }
 }
 
 struct IAMDashboard_Previews: PreviewProvider {
     static var previews: some View {
-        IAMDashboard(pageType: PageType.RANKING)
+        IAMDashboard(PageType.RANKING)
     }
 }

@@ -5,7 +5,7 @@ let appId = "testAppId"
 let token = "testToken"
 let refreshToken = "testRefreshToken"
 let apiKey = "testApikey"
-let config = CoreConfiguration(appId: appId, apiKey: apiKey, token: token, refreshToken: refreshToken, platform: Platform.ANDROID)
+let config = CoreConfiguration(appId, apiKey, token, refreshToken, Platform.ANDROID)
 
 final class SpmTesterTests: XCTestCase {
     func testExample() throws {
@@ -21,7 +21,7 @@ final class SpmTesterTests: XCTestCase {
     
     
     func testCore() throws {
-        Core.initialize(config: config)
+        Core.initialize(config)
         XCTAssertEqual(Core.appId(), appId)
     }
 }

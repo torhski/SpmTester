@@ -7,7 +7,7 @@ public class Core {
     private var _storage = InstallationStore()
     
     
-    static public func initialize(config: CoreConfiguration) {
+    static public func initialize(_ config: CoreConfiguration) {
         _config = config
     }
     

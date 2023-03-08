@@ -13,7 +13,7 @@ public struct CoreConfiguration {
     public var refreshToken: String
     public var platform: Platform
     
-    public init(appId: String, apiKey: String, token: String, refreshToken: String, platform: Platform) {
+    public init(_ appId: String, _ apiKey: String, _ token: String, _ refreshToken: String, _ platform: Platform) {
         self.appId = appId
         self.apiKey = apiKey
         self.token = token

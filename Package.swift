@@ -5,12 +5,16 @@ import PackageDescription
 
 let package = Package(
     name: "SpmTester",
-    platforms: [.iOS("13.0")],
+    platforms: [.iOS(.v13), .macOS(.v13)],
+    
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "SpmTester",
             targets: ["SpmTester"]),
+        .library(
+            name: "IAMViews",
+            targets: ["IAMViewsTarget"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -22,9 +26,21 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "SpmTester",
-            dependencies: []),
+            dependencies: [
+                .product(name: "Alamofire", package: "Alamofire")
+            ]),
+        .target(
+            name: "IAMViewsTarget",
+            dependencies: [
+                .product(name: "Alamofire", package: "Alamofire")
+            ],
+            path: "Sources/Views"
+        
+        ),
         .testTarget(
             name: "SpmTesterTests",
-            dependencies: ["SpmTester"]),
+            dependencies: ["SpmTester"]
+            
+        )
     ]
 )
