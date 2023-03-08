@@ -11,10 +11,8 @@ let package = Package(
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "SpmTester",
-            targets: ["SpmTester"]),
-        .library(
-            name: "IAMViews",
-            targets: ["IAMViewsTarget"]),
+            targets: ["SpmTester"])
+        
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -29,14 +27,7 @@ let package = Package(
             dependencies: [
                 .product(name: "Alamofire", package: "Alamofire")
             ]),
-        .target(
-            name: "IAMViewsTarget",
-            dependencies: [
-                .product(name: "Alamofire", package: "Alamofire")
-            ],
-            path: "Sources/Views"
         
-        ),
         .testTarget(
             name: "SpmTesterTests",
             dependencies: ["SpmTester"]
