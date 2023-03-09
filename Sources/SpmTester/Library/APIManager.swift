@@ -43,10 +43,9 @@ class APIManager {
                    parameters: parameters,
                    encoding: URLEncoding.default).responseDecodable(of: type) { response in
             
-            print("response \(response)")
+            print("response \(response.value)")
 
-            
-            completionHandler(response.value ?? NSObject() as! T)
+            completionHandler(response.value ?? (T.self is AnyTypeOfArray.Type ? NSArray() : NSObject()) as! T)
         }
     }
 }
