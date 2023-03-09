@@ -37,7 +37,7 @@ class APIManager {
                                      method: HTTPMethod,
                                      parameters: Parameters? = nil,
                                      completionHandler: @escaping (T) -> Void) {
-        
+        print(ENDPOINT + path)
         session.request(ENDPOINT + path,
                    method: method,
                    parameters: parameters,
