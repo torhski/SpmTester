@@ -6,6 +6,8 @@ struct TestOBJ: Codable {
     let url: String
 }
 
+let _APITests_AppId = "appe29e059f-731e-4718-ab77-a8e038b8358b"
+
 final class ApiTests: XCTestCase {
     
     let installRemote = InstallationRemote()
@@ -15,23 +17,39 @@ final class ApiTests: XCTestCase {
         XCTAssertNotNil(header.value(for: kIAMInstallationBundleId))
     }
     
-    func testApiExample() async throws {
-        let endpoint = "https://httpbin.org/get"
-        let resp = try await APIManager.shared.requestJSON(endpoint, type: TestOBJ.self, method: .get)
-        XCTAssertEqual(resp.url, endpoint)
-    }
     
-    
-    func testDebounceRegister() async throws {
+    func testDebounceRegister() throws {
         
         struct DebounceResp: Codable {
             let reason: String
             let result: String
         }
         
-        let resp = try await APIManager.shared.requestJSON(.Register, type: DebounceResp.self, method: .post,
-                                                           parameters: ["appId": "appf86a2394-2474-48ef-ae5c-86f9a2dbcec0"])
+            
+        APIManager.shared.requestJSON(EndpointPath.register.rawValue , type: DebounceResp.self, method: .post,
+                                                           parameters: ["appId": _APITests_AppId]) {
+            resp in
+            
+            print("Register user \(resp)")
+        }
+    }
+    
+    func testFetchAchievements() async throws {
         
-        print("Register user \(resp)")
+        struct DebounceResp: Codable {
+            let actionId: String
+            let createdAt: String
+            let targetValue: String
+        }
+        
+        APIManager.shared.requestJSON(EndpointPath.achievements.rawValue + "/\(_APITests_AppId)" , type: DebounceResp.self, method: .get) {
+            resp in
+            
+            print("get \(resp)")
+        }
+        
+//        let resp1 = try await APIManager.shared.test(TestOBJ.self)
+//        print("testTests resp \(resp1)")
+        
     }
 }

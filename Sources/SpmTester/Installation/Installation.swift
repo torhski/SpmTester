@@ -8,7 +8,7 @@ public class Installation {
     var auid: String?
     private var _store = InstallationStore()
     
-    func loadAuid(_ appId: String, auid: String? = nil, idProvider: String? = nil) async throws {
+    func loadAuid(_ appId: String, auid: String? = nil, idProvider: String? = nil) {
     
         if auid != nil {
             return
@@ -19,22 +19,25 @@ public class Installation {
         }
         
         if self.auid == nil {
-            try await self._generateAuid(appId)
+            self._generateAuid(appId)
         }
     }
     
-    func refreshAuid(_ appId: String) async throws {
+    func refreshAuid(_ appId: String) {
         
         self.auid = nil
         _store.delete(key: self._auidKey(appId))
         
-        try await self.loadAuid(appId)
+        self.loadAuid(appId)
     }
     
-    private func _generateAuid(_ appId: String) async throws {
+    private func _generateAuid(_ appId: String) {
         
         do {
-            self.auid = try await InstallationRemote().createRequest(appId, auid: self.auid)
+            InstallationRemote().createRequest(appId, auid: self.auid) {
+                resp in
+                print("_generateAuid \(resp)")
+            }
         } catch {
             debugPrint("_generateAuid error")
         }

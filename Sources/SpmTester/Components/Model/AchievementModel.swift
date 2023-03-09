@@ -29,10 +29,19 @@ class AchievementModel: NSObject {
         }
     }
     
+    // debug
+    var actionId: String
+    var targetValue: String
     
-    public init(_ identifier: String, player: String = "") {
+    public init(_ identifier: String,
+                player: String = "",
+                actionId: String = "",
+                targetValue: String = ""
+    ) {
         self.identifier = identifier
         self.player = player
+        self.actionId = actionId
+        self.targetValue = targetValue
     }
     
     

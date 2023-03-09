@@ -22,24 +22,29 @@ class APIManager {
         return Session(configuration: configuration)
     }()
     
-    func requestJSON<T: Decodable>(_ path: EndpointPath,
-                                   type: T.Type,
-                                   method: HTTPMethod,
-                                   parameters: Parameters? = nil) async throws -> T {
+//
+//    func test<T: Decodable>(_ type: T.Type) async throws -> T {
+//        return try await session.request("https://httpbin.org/get",
+//                                         method: .get,
+//
+//                                                 encoding: URLEncoding.default)
+//                .serializingDecodable()
+//                .value
+//    }
+    
+    func requestJSON<T: Decodable>(_ path: String,
+                                     type: T.Type,
+                                     method: HTTPMethod,
+                                     parameters: Parameters? = nil,
+                                     completionHandler: @escaping (T) -> Void) {
         
-        return try await self.requestJSON(ENDPOINT + path.rawValue, type: type, method: method, parameters: parameters)
+        session.request(ENDPOINT + path,
+                   method: method,
+                   parameters: parameters,
+                   encoding: URLEncoding.default).responseDecodable(of: type) { response in
+            
+            completionHandler(response.value!)
+        }
     }
     
-    func requestJSON<T: Decodable>(_ endpoint: String,
-                                   type: T.Type,
-                                   method: HTTPMethod,
-                                   parameters: Parameters? = nil) async throws -> T {
-        
-        return try await session.request(endpoint,
-                                         method: method,
-                                         parameters: parameters,
-                                         encoding: URLEncoding.default)
-        .serializingDecodable()
-        .value
-    }
 }
