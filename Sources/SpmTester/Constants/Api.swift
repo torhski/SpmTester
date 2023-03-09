@@ -15,7 +15,7 @@ struct AuidRegisterResponse: Codable {
 }
 
 struct AchievementsResponse: Codable {
-    let acionId: String
+    let actionId: String
     let createdAt: String
     let targetValue: String
 }
