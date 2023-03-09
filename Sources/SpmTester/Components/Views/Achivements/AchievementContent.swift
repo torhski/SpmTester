@@ -3,7 +3,6 @@ import SwiftUI
 
 public struct AchievementContent: View {
     @ObservedObject var viewModel = AchievementViewModel()
-    var appId: String
     
     public var body: some View {
         Text("Achievements View")
@@ -15,7 +14,7 @@ public struct AchievementContent: View {
                 Text(achievement.targetValue)
             }
         }.onAppear {
-            self.viewModel.load(appId)
+            self.viewModel.load()
         }
     }
 }
@@ -23,6 +22,6 @@ public struct AchievementContent: View {
 
 struct AchievementContent_Previews: PreviewProvider {
     static var previews: some View {
-        AchievementContent(appId: "testAppId")
+        AchievementContent()
     }
 }

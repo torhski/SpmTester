@@ -8,7 +8,7 @@ struct ContentView: View {
     public var body: some View {
         
         if pageType == .achievements {
-            AchievementContent(appId: "test")
+            AchievementContent()
         } else if pageType == .ranking {
             RankingContent()
         } else if pageType == .setting {
