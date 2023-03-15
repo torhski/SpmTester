@@ -1,6 +1,6 @@
 import Foundation
 
-public class InstallationStore {
+class StorageManager {
     private func baseQuery(key: String? = nil, groupId: String? = nil, accountName: String? = nil, synchronizable: Bool? = false, returnData: Bool? = false) -> Dictionary<CFString, Any> {
             var keychainQuery: [CFString: Any] = [kSecClass : kSecClassGenericPassword]
             if (key != nil) {

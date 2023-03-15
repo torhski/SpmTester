@@ -22,22 +22,6 @@ class APIManager {
         return Session(configuration: configuration)
     }()
     
-    
-    func test<T: Decodable>(_ type: T.Type) async throws -> T {
-        do {
-            sleep(4)
-        }
-        
-        return try await session.request("https://httpbin.org/anything",
-                                         method: .post,
-                                         parameters: ["username":"name", "password": "password"],
-                                         encoding: JSONEncoding.default)
-        .serializingDecodable().value
-        
-        
-        
-    }
-    
     func requestJSON<T: Decodable>(_ path: String,
                                    type: T.Type,
                                    method: HTTPMethod,

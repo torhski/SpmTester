@@ -10,8 +10,7 @@ let testAppId = "appf86a2394-2474-48ef-ae5c-86f9a2dbcec0"
 
 final class StorageTests: XCTestCase {
     
-    let storage = InstallationStore()
-    let installation = Installation()
+    let storage = StorageManager()
     
     func testStorage() throws {
         storage.delete(key: key)
@@ -25,15 +24,8 @@ final class StorageTests: XCTestCase {
     
     func testDeleteAll() throws {
         // TODO
-        
 //        print("deleteALl \(Bundle.main.bundleIdentifier)")
         
     }
     
-    func testInstallationStoreLoad() async throws {
-        
-//        storage.write(key: kIAMAuidPrefix + testAppId, value: testValue)
-        
-//        try await installation.loadAuid(testAppId)
-    }
 }

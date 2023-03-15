@@ -39,10 +39,6 @@ final class ApiTests: XCTestCase {
             print("Register user \(resp)")
         }
         
-        
-        let resp = try await APIManager.shared.test(TestOBJ.self)
-        print("test resp \(resp)")
-        
     }
     
     
@@ -62,11 +58,10 @@ final class ApiTests: XCTestCase {
             print("get \(resp)")
         }
         
-        try await APIManager.shared.test(TestOBJ.self)
     }
     
     func testAsync() async throws {
-        try await APIManager.shared.test(TestOBJ.self)
+//        try await APIManager.shared.test(TestOBJ.self)
     }
     
     

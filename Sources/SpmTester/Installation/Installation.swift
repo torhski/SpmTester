@@ -6,7 +6,7 @@ var kIAMAuidPrefix = "KEY_IAM_Auid_"
 public class Installation {
     
     var auid: String?
-    private var _store = InstallationStore()
+    private var _storage = StorageManager()
     
     func loadAuid(_ appId: String, auid: String? = nil, idProvider: String? = nil) {
     
@@ -14,7 +14,7 @@ public class Installation {
             return
         }
         
-        if let cached = _store.read(key: self._auidKey(appId)).value {
+        if let cached = _storage.read(key: self._auidKey(appId)).value {
             self.auid = String(describing: cached)
         }
         
@@ -28,7 +28,7 @@ public class Installation {
     func refreshAuid(_ appId: String) {
         
         self.auid = nil
-        _store.delete(key: self._auidKey(appId))
+        _storage.delete(key: self._auidKey(appId))
         
         self.loadAuid(appId)
     }
@@ -38,7 +38,6 @@ public class Installation {
         do {
             InstallationRemote().createRequest(appId, auid: self.auid) {
                 resp in
-                print("_generateAuid \(resp)")
                 self.auid = resp?.uuid
             }
         } catch {
