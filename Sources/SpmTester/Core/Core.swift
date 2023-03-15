@@ -4,11 +4,13 @@ import Foundation
 public class Core {
     
     static private var _config: CoreConfiguration?
-    private var _storage = InstallationStore()
+    static private var _installation = Installation()
     
     
     static public func initialize(_ config: CoreConfiguration) {
         _config = config
+        
+        _installation.loadAuid(config.appId)
     }
     
     static public func appId() -> String? {
@@ -21,6 +23,6 @@ public class Core {
             return
         }
         
-        print("\(_config!.appId), \(_config!.apiKey), \(_config!.token), \(_config!.refreshToken), \(_config!.platform)")
+        print("\(_config!.appId), \(_config!.apiKey), \(_config!.token), \(_config!.refreshToken)")
     }
 }

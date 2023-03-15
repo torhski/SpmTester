@@ -12,7 +12,7 @@ class InstallationRemote {
                        completeHandler: @escaping (AuidRegisterResponse) -> Void) {
         
         APIManager.shared.requestJSON(EndpointPath.register.rawValue, type: AuidRegisterResponse.self, method: .post, parameters: [
-            "appId": appId
+            "appId": appId, "type": "user"
         ], completionHandler: completeHandler)
     }
     

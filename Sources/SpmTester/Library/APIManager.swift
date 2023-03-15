@@ -1,7 +1,7 @@
 import Foundation
 import Alamofire
 
-let ENDPOINT = "https://iam.debounce.network"
+let ENDPOINT = "https://92hxval5kb.execute-api.us-east-1.amazonaws.com/Prod/"
 
 class APIManager {
     internal static func getAPIHeader() -> HTTPHeaders {

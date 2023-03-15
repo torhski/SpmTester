@@ -18,6 +18,8 @@ public class Installation {
             self.auid = String(describing: cached)
         }
         
+        print("cached from local \(self.auid)")
+        
         if self.auid == nil {
             self._generateAuid(appId)
         }
@@ -37,6 +39,7 @@ public class Installation {
             InstallationRemote().createRequest(appId, auid: self.auid) {
                 resp in
                 print("_generateAuid \(resp)")
+                self.auid = resp.uuid
             }
         } catch {
             debugPrint("_generateAuid error")

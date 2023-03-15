@@ -14,7 +14,7 @@ class AchievementViewModel: ObservableObject {
         APIManager.shared.requestJSON(EndpointPath.achievements.rawValue + "/\(self.appId!)", type: [AchievementsResponse].self, method: .get) {
             (response) in
             print("load \(response)")
-            self.achievements = response.map { AchievementModel(self.appId!, actionId: $0.actionId, targetValue: $0.targetValue) }
+            self.achievements = response.map { AchievementModel(self.appId!, actionId: $0.id, targetValue: $0.targetValue) }
         
         }
         

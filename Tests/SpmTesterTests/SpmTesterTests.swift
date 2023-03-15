@@ -5,7 +5,7 @@ let appId = "testAppId"
 let token = "testToken"
 let refreshToken = "testRefreshToken"
 let apiKey = "testApikey"
-let config = CoreConfiguration(appId, apiKey, token, refreshToken, Platform.ANDROID)
+let config = CoreConfiguration(appId, apiKey, token, refreshToken)
 
 final class SpmTesterTests: XCTestCase {
     func testExample() throws {
