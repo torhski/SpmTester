@@ -39,7 +39,7 @@ public class Installation {
             InstallationRemote().createRequest(appId, auid: self.auid) {
                 resp in
                 print("_generateAuid \(resp)")
-                self.auid = resp.uuid
+                self.auid = resp?.uuid
             }
         } catch {
             debugPrint("_generateAuid error")

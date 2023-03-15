@@ -1,9 +1,16 @@
 import XCTest
 @testable import SpmTester
 
+struct TestArgs: Codable {
+    let username: String
+    let password: String
+}
+
+
 struct TestOBJ: Codable {
     let origin: String
     let url: String
+    let method: String
 }
 
 let _APITests_AppId = "appef6720db-cdfb-475d-8f49-703782c2b766"
@@ -20,19 +27,26 @@ final class ApiTests: XCTestCase {
     
     func testDebounceRegister() async throws {
         
-        struct DebounceResp: Codable {
+        struct DebounceRegisterResp: Codable {
             let uuid: String
+            let appId: String
         }
         
-            
-        APIManager.shared.requestJSON(EndpointPath.register.rawValue , type: DebounceResp.self, method: .post,
-                                      parameters: ["appId": _APITests_AppId, "type": "user"]) {
+        APIManager.shared.requestJSON(EndpointPath.register.rawValue , type: DebounceRegisterResp.self, method: .post,
+                                      parameters: ["type":"app", "publisherWallet": "0x1111"]) {
             resp in
             
             print("Register user \(resp)")
         }
         
+        
+        let resp = try await APIManager.shared.test(TestOBJ.self)
+        print("test resp \(resp)")
+        
     }
+    
+    
+    
     
     func testFetchAchievements() async throws {
         
@@ -48,6 +62,11 @@ final class ApiTests: XCTestCase {
             print("get \(resp)")
         }
         
+        try await APIManager.shared.test(TestOBJ.self)
+    }
+    
+    func testAsync() async throws {
+        try await APIManager.shared.test(TestOBJ.self)
     }
     
     

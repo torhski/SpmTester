@@ -22,30 +22,36 @@ class APIManager {
         return Session(configuration: configuration)
     }()
     
-//
-//    func test<T: Decodable>(_ type: T.Type) async throws -> T {
-//        return try await session.request("https://httpbin.org/get",
-//                                         method: .get,
-//
-//                                                 encoding: URLEncoding.default)
-//                .serializingDecodable()
-//                .value
-//    }
+    
+    func test<T: Decodable>(_ type: T.Type) async throws -> T {
+        do {
+            sleep(4)
+        }
+        
+        return try await session.request("https://httpbin.org/anything",
+                                         method: .post,
+                                         parameters: ["username":"name", "password": "password"],
+                                         encoding: JSONEncoding.default)
+        .serializingDecodable().value
+        
+        
+        
+    }
     
     func requestJSON<T: Decodable>(_ path: String,
-                                     type: T.Type,
-                                     method: HTTPMethod,
-                                     parameters: Parameters? = nil,
-                                     completionHandler: @escaping (T) -> Void) {
-        print(ENDPOINT + path)
+                                   type: T.Type,
+                                   method: HTTPMethod,
+                                   parameters: Parameters? = nil,
+                                   completionHandler: @escaping (T?) -> Void) {
+        
         session.request(ENDPOINT + path,
-                   method: method,
-                   parameters: parameters,
-                   encoding: URLEncoding.default).responseDecodable(of: type) { response in
-            
-            print("response \(response.value)")
-
-            completionHandler(response.value ?? (T.self is AnyTypeOfArray.Type ? NSArray() : NSObject()) as! T)
+                        method: method,
+                        parameters: parameters,
+                        encoding: JSONEncoding.default,
+                        headers: ["Content-Type": "application/json"])
+        .validate(statusCode: 200..<300)
+        .responseDecodable(of: type) { response in
+            completionHandler(response.value)
         }
     }
 }

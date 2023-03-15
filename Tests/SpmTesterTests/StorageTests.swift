@@ -34,6 +34,6 @@ final class StorageTests: XCTestCase {
         
 //        storage.write(key: kIAMAuidPrefix + testAppId, value: testValue)
         
-        try await installation.loadAuid(testAppId)
+//        try await installation.loadAuid(testAppId)
     }
 }

@@ -9,7 +9,7 @@ class InstallationRemote {
     
     
     func createRequest(_ appId: String, auid: String? = nil, idProvider: String? = nil,
-                       completeHandler: @escaping (AuidRegisterResponse) -> Void) {
+                       completeHandler: @escaping (AuidRegisterResponse?) -> Void) {
         
         APIManager.shared.requestJSON(EndpointPath.register.rawValue, type: AuidRegisterResponse.self, method: .post, parameters: [
             "appId": appId, "type": "user"
