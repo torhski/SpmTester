@@ -1,5 +1,5 @@
 import XCTest
-@testable import SpmTester
+@testable import iam_ios_sdk_tester
 
 struct TestArgs: Codable {
     let username: String

@@ -1,6 +1,6 @@
 
 import XCTest
-@testable import SpmTester
+@testable import iam_ios_sdk_tester
 
 
 let key = "TestKey"
