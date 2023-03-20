@@ -38,7 +38,10 @@ public class Installation {
         do {
             InstallationRemote().createRequest(appId, auid: self.auid) {
                 resp in
+                
                 self.auid = resp?.uuid
+                self._storage.write(key: self._auidKey(appId), value: resp?.uuid ?? "")
+                print("uuid from server \(self.auid)")
             }
         } catch {
             debugPrint("_generateAuid error")
