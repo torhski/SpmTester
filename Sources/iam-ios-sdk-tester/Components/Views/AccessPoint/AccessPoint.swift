@@ -3,14 +3,14 @@ import SwiftUI
 // absolute position
 // tl (default), tr, bl, br
 
-public struct AcessPoint: View {
+public struct AccessPoint: View {
     public var body: some View {
         Text("AcessPoint")
     }
 }
 
-struct AcessPoint_Previews: PreviewProvider {
+struct AccessPoint_Previews: PreviewProvider {
     static var previews: some View {
-        AcessPoint()
+        AccessPoint()
     }
 }

@@ -24,7 +24,7 @@ TODO: Add long description of the pod here.
   s.homepage         = 'https://github.com/torhski/iam-ios-sdk-tester'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'torhski' => '51470314+torhski@users.noreply.github.com' }
+  s.author           = { 'torhski' => 'tochy15987@gmail.com' }
   s.source           = { :git => 'https://github.com/torhski/iam-ios-sdk-tester.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
