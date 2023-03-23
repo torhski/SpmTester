@@ -3,13 +3,21 @@ import SwiftUI
 // absolute position
 // tl (default), tr, bl, br
 
+class Navigation: ObservableObject {
+    @Published var productFamilyIsActive : String? = nil // here
+}
+
 public struct AccessPoint: View {
-    public init {
-        
-    }
+
+    @EnvironmentObject var navigation : Navigation
+    
+    public init() {}
     
     public var body: some View {
-        Text("AcessPoint")
+
+        // TODO execute new window, route new page
+        Text("AccessPoint")
+        
     }
 }
 

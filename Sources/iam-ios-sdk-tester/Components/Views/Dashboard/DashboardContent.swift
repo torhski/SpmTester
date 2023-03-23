@@ -1,9 +1,9 @@
 
 import SwiftUI
-import Alamofire
 import SDWebImageSwiftUI
 
-struct AchievementContent: View {
+struct DashboardContent: View {
+    
     @ObservedObject var viewModel = AchievementViewModel()
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -54,23 +54,18 @@ struct AchievementContent: View {
                 
                 Spacer()
 
-                WebImage(url: URL(string: imageUrl))
-                    .placeholder(Image(systemName: "photo"))
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                            .padding(.top, 8)
-                                            .frame(width: 48, height: 48, alignment: .center)
-
+                NavigationLink(destination: AchievementsScreen()) {
+                    WebImage(url: URL(string: imageUrl))
+                        .placeholder(Image(systemName: "photo"))
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                                .padding(.top, 8)
+                                                .frame(width: 48, height: 48, alignment: .center)
+                    
+                }
             }
         }.frame(minWidth: 0, maxWidth: .infinity)
         
             .padding(.horizontal, 16)
-    }
-}
-
-
-struct AchievementContent_Previews: PreviewProvider {
-    static var previews: some View {
-        AchievementContent()
     }
 }

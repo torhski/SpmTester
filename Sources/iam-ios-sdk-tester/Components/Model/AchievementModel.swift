@@ -32,6 +32,7 @@ class AchievementModel: NSObject {
     // debug
     var actionId: String
     var targetValue: String
+    var image: String
     
     public init(_ identifier: String,
                 player: String = "",
@@ -42,6 +43,7 @@ class AchievementModel: NSObject {
         self.player = player
         self.actionId = actionId
         self.targetValue = targetValue
+        self.image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRB2ysrPvhIBLoo22vh1IW1cPRT4YEaSA52Rg"
     }
     
     
