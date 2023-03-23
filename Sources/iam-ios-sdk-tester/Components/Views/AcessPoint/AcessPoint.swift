@@ -7,7 +7,7 @@ import SwiftUI
 import Flutter
 
 public struct AcessPoint: View {
-    init() {
+    public init() {
         
     }
     
