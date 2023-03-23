@@ -82,12 +82,12 @@ class StorageManager {
             return SecItemDelete(keychainQuery as CFDictionary)
         }
         
-        internal func delete(key: String, groupId: String? = nil, accountName: String? = nil, synchronizable: Bool? = false) -> OSStatus {
+        internal func delete(key: String, groupId: String? = nil, accountName: String? = nil, synchronizable: Bool? = false) {
             let keychainQuery = baseQuery(key: key, groupId: groupId, accountName: accountName, synchronizable: synchronizable, returnData: true)
-            return SecItemDelete(keychainQuery as CFDictionary)
+            SecItemDelete(keychainQuery as CFDictionary)
         }
         
-        internal func write(key: String, value: String, groupId: String? = nil, accountName: String? = nil, synchronizable: Bool? = false, accessibility: String? = nil) -> OSStatus {
+        internal func write(key: String, value: String, groupId: String? = nil, accountName: String? = nil, synchronizable: Bool? = false, accessibility: String? = nil) {
             var attrAccessible: CFString = kSecAttrAccessibleWhenUnlocked
             if (accessibility != nil) {
                 switch accessibility {
@@ -120,11 +120,11 @@ class StorageManager {
                     kSecAttrSynchronizable: synchronizable
                 ]
                 
-                return SecItemUpdate(keychainQuery as CFDictionary, update as CFDictionary)
+                SecItemUpdate(keychainQuery as CFDictionary, update as CFDictionary)
             } else {
                 keychainQuery[kSecValueData] = value.data(using: String.Encoding.utf8)
                 keychainQuery[kSecAttrAccessible] = attrAccessible
-                return SecItemAdd(keychainQuery as CFDictionary, nil)
+                SecItemAdd(keychainQuery as CFDictionary, nil)
             }
         }
         

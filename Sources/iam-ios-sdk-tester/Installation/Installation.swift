@@ -5,7 +5,7 @@ var kIAMAuidPrefix = "KEY_IAM_Auid_"
 
 public class Installation {
     
-    var auid: String?
+    var auid: String = ""
     private var _storage = StorageManager()
     
     func loadAuid(_ appId: String, auid: String? = nil, idProvider: String? = nil) {
@@ -17,17 +17,15 @@ public class Installation {
         if let cached = _storage.read(key: self._auidKey(appId)).value {
             self.auid = String(describing: cached)
         }
-        
-        print("cached from local \(self.auid)")
-        
-        if self.auid == nil {
+    
+        if self.auid.isEmpty {
             self._generateAuid(appId)
         }
     }
     
     func refreshAuid(_ appId: String) {
         
-        self.auid = nil
+        self.auid = ""
         _storage.delete(key: self._auidKey(appId))
         
         self.loadAuid(appId)
@@ -39,9 +37,8 @@ public class Installation {
             InstallationRemote().createRequest(appId, auid: self.auid) {
                 resp in
                 
-                self.auid = resp?.uuid
+                self.auid = String(describing: resp?.uuid)
                 self._storage.write(key: self._auidKey(appId), value: resp?.uuid ?? "")
-                print("uuid from server \(self.auid)")
             }
         } catch {
             debugPrint("_generateAuid error")

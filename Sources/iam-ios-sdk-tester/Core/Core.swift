@@ -13,8 +13,8 @@ public class Core {
         _installation.loadAuid(config.appId)
     }
     
-    static public func appId() -> String? {
-        return _config?.appId
+    static public func appId() -> String {
+        return String(describing: _config?.appId)
     }
     
     // @debug

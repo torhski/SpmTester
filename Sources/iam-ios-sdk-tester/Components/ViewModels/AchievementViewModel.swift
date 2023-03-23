@@ -5,23 +5,20 @@ class AchievementViewModel: ObservableObject {
     
     var appId = Core.appId()
     
-    func load() {
-        if self.appId == nil {
+    func load() -> Void {
+        if self.appId.isEmpty {
             return
-        }
+        } else {
         
-        
-        APIManager.shared.requestJSON(EndpointPath.achievements.rawValue + "/\(self.appId!)", type: [AchievementsResponse].self, method: .get) {
-            (response) in
-            print("load \(response)")
-            if response != nil {
-                self.achievements = response!.map { AchievementModel(self.appId!, actionId: $0.id, targetValue: $0.targetValue) }
-            } else {
-                self.achievements = []
+            APIManager.shared.requestJSON(EndpointPath.achievements.rawValue + "/\(self.appId)", type: [AchievementsResponse].self, method: .get) {
+                (response) in
+                
+                if response != nil {
+                    self.achievements = response!.map { AchievementModel(self.appId, actionId: $0.id, targetValue: $0.targetValue) }
+                } else {
+                    self.achievements = []
+                }
             }
-        
         }
-        
     }
-    
 }

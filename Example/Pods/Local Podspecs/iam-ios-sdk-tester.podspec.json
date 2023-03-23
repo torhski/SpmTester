@@ -1,0 +1,27 @@
+{
+  "name": "iam-ios-sdk-tester",
+  "version": "0.0.1",
+  "summary": "A short description of iam-ios-sdk-tester.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/torhski/iam-ios-sdk-tester",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "torhski": "51470314+torhski@users.noreply.github.com"
+  },
+  "source": {
+    "git": "https://github.com/torhski/iam-ios-sdk-tester.git",
+    "tag": "0.0.1"
+  },
+  "platforms": {
+    "ios": "14.0"
+  },
+  "source_files": "Sources/iam-ios-sdk-tester/**/*",
+  "dependencies": {
+    "Alamofire": [
+
+    ]
+  }
+}
